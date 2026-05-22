@@ -2,26 +2,14 @@
 #include "include/lcd_driver.hpp"
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
-#include "include/millis.h"
-#include "include/lcd_driver.hpp"
 #include "include/CoolCars.h"
 #include "include/GymboJames.h"
 #include "include/HolyBurgers.h"
 #include "include/PiePeople.h"
 #include "include/Washomania.h"
-
-#include <avr/interrupt.h>
 #include <stdlib.h>
 
 #define NUM_ADVERTISERS 5
-
-static Advertiser* advertisers[NUM_ADVERTISERS] = {
-    &coolcars,
-    &gymbojames,
-    &holyburgers,
-    &piepeople,
-    &washomania
-};
 
 static Advertiser* pickAdvertiser(void) {
     // Roll a random number between 0 and the total amount paid by all advertisers
