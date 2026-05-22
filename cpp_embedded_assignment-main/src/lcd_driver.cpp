@@ -56,10 +56,19 @@ hd44780::hd44780() {
 }
 
 void hd44780::blink_text(const char *text) {
-    /* TASK
-    Implement a blinking effect where the program first writes out the text
-    and then blinks the message.
-    */
+    clear();
+    write_text(text);
+
+    const unsigned char blink_cycles = 5;
+    const unsigned long visible_ms = 1600UL;
+    const unsigned long hidden_ms = 400UL;
+
+    for (unsigned char i = 0; i < blink_cycles; ++i) {
+        millis_wait_ms(visible_ms);
+        clear();
+        millis_wait_ms(hidden_ms);
+        write_text(text);
+    }
 }
 
 void hd44780::write_text(const char *text) {

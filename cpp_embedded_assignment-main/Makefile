@@ -1,9 +1,21 @@
-CC=C:\avr\bin\avr-g++
-LD=C:\avr\bin\avr-ld
-OBJCOPY="C:\avr\bin\avr-objcopy"
-OBJDUMP="C:\avr\bin\avr-objdump"
-AVRSIZE="C:\avr\bin\avr-size"
-OBJISP="C:\avr\bin\avrdude"
+AVR_BIN=C:/avr/avr-gcc-15.2.0-x64-windows/bin
+
+ifeq ($(wildcard $(AVR_BIN)/avr-g++.exe),)
+CC=avr-g++
+LD=avr-ld
+OBJCOPY=avr-objcopy
+OBJDUMP=avr-objdump
+AVRSIZE=avr-size
+OBJISP=avrdude
+else
+CC=$(AVR_BIN)/avr-g++.exe
+LD=$(AVR_BIN)/avr-ld.exe
+OBJCOPY=$(AVR_BIN)/avr-objcopy.exe
+OBJDUMP=$(AVR_BIN)/avr-objdump.exe
+AVRSIZE=$(AVR_BIN)/avr-size.exe
+OBJISP=$(AVR_BIN)/avrdude.exe
+endif
+
 MCU=atmega328p
 PROGRAMMER=arduino
 BAUDRATE=115200
