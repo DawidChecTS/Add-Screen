@@ -56,14 +56,16 @@ hd44780::hd44780() {
 }
 
 void hd44780::blink_text(const char *text) {
+    // clean the screen and write the text once before starting the blinking loop
     clear();
     write_text(text);
 
-    const unsigned char blink_cycles = 5;
-    const unsigned long visible_ms = 1600UL;
-    const unsigned long hidden_ms = 400UL;
+    const int blink_cycles = 5;
+    const int visible_ms = 1600;
+    const int hidden_ms = 400;
 
-    for (unsigned char i = 0; i < blink_cycles; ++i) {
+    // Blink the text by alternating between visible and hidden states
+    for (int i = 0; i < blink_cycles; ++i) {
         millis_wait_ms(visible_ms);
         clear();
         millis_wait_ms(hidden_ms);
